@@ -18,7 +18,7 @@
 
                             <div class="col-md-6">
                                                                   
-                                   <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}"  autofocus required="" data-parsley-required-message="*Clinic Name cannot be blank!" placeholder="Clinic Name" maxlength="255"> 
+                                   <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" event.preventDefault(); autofocus required="" data-parsley-required-message="*Clinic Name cannot be blank!" placeholder="Clinic Name" maxlength="255"> 
                                                        
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('newclinictoken') ? ' has-error' : '' }}">
+                       {{--  <div class="form-group{{ $errors->has('newclinictoken') ? ' has-error' : '' }}">
                             <label for="newclinictoken" class="col-md-4 control-label">Clinic Token</label>
 
                             <div class="col-md-6">
@@ -40,9 +40,9 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="form-group{{ $errors->has('cliniclocation') ? ' has-error' : '' }}">
+                       {{--  <div class="form-group{{ $errors->has('cliniclocation') ? ' has-error' : '' }}">
                             <label for="cliniclocation" class="col-md-4 control-label">Clinic Location</label>
                             
                             <div class="col-md-6">
@@ -56,6 +56,26 @@
                                     <span class="help-block">
                                         <strong>{{ $errors->first('cliniclocation') }}</strong>
                                     </span>
+                                @endif
+                            </div>
+                        </div> --}}
+
+                        <div class="form-group{{ $errors->has('clinictype') ? ' has-error' : '' }}">
+                            <label for="clinictype" class="col-md-4 control-label">Clinic Type</label>
+
+                            <div class="col-md-6">
+                                <select required="" data-parsley-required-message="*Clinic Type is required" name="clinictype" id="clinictype" class="js-example-basic-single form-control">
+                                    <option value="" selected="selected"></option>
+                                    <option value="Hospital OPD" >Hospital OPD</option>
+                                    <option value="Nursing Home OPD" >Nursing Home OPD</option>
+                                    <option value="Polyclinic<" >Polyclinic</option>
+                                    <option value="Private Clinic" >Private Clinic</option>
+                                </select>
+
+                                @if ($errors->has('clinictype'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('clinictype') }}</strong>
+                                </span>
                                 @endif
                             </div>
                         </div>

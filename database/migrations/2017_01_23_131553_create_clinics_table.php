@@ -21,6 +21,7 @@ class CreateClinicsTable extends Migration
             // $table->string('city');
             // $table->string('pin',6);
             $table->boolean('isRemoteClinic')->default(false);//Check if Kenyan Clinic
+            $table->string('clinictype');
             $table->integer('clinicadmin_id')->unsigned();
             $table->foreign('clinicadmin_id')->references('id')->on('users');
             $table->string('phoneprimary',10)->unique();

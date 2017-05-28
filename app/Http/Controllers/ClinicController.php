@@ -133,8 +133,9 @@ public function newUser(){
     {
         $this->validate($request,[
             'name'=>'required|max:255|unique:clinics,name',
-            'newclinictoken'=>'required|exists:newclinictokens,newclinictoken|max:255',
-            'cliniclocation'=>'required',
+            // 'newclinictoken'=>'required|exists:newclinictokens,newclinictoken|max:255',
+            // 'cliniclocation'=>'required',
+            'clinictype'=>'required|max:255',
             'address'=>'required|unique:clinics,address',
             // 'state'=>'required|max:50',
             // 'city'=>'required|max:255',
@@ -145,9 +146,10 @@ public function newUser(){
             ],[
             'name.required'=>'Clinic Name is required',
             'name.unique'=>'A Clinic by this name is already registered.',
-            'newclinictoken.required'=>'Clinic Token cannot be left blank!',
-            'newclinictoken.exists'=>'Invalid Clinic Token!',
-            'cliniclocation.required'=>'Kindly Enter the Clinic Location',
+            // 'newclinictoken.required'=>'Clinic Token cannot be left blank!',
+            // 'newclinictoken.exists'=>'Invalid Clinic Token!',
+            // 'cliniclocation.required'=>'Kindly Enter the Clinic Location',
+            'clinictype.required'=>'Type of Clinic is required.',
             'address.required'=>'Clinic Address is required',
             'address.unique'=>'A Clinic with this address is already Registered',
             // 'state.required'=>'State field cannot be left blank',
@@ -166,16 +168,17 @@ public function newUser(){
         $user = User::find(Auth::user()->id);
         $clinic = new Clinic;
         $clinic->name = $request->name;
-        if ($request->cliniclocation == "Kenya") {
-           $clinic->isRemoteClinic = true;
-           $user->isRemoteDoc = true;
-           $user->save();
-       }else{
-        $clinic->isRemoteClinic = false;
-        $user->isRemoteDoc = false;
-        $user->save();
-    }
+    //     if ($request->cliniclocation == "Kenya") {
+    //        $clinic->isRemoteClinic = true;
+    //        $user->isRemoteDoc = true;
+    //        $user->save();
+    //    }else{
+    //     $clinic->isRemoteClinic = false;
+    //     $user->isRemoteDoc = false;
+    //     $user->save();
+    // }
     $clinic->address = $request->address;
+    $clinic->clinictype = $request->clinictype;
          // $clinic->state = $request->state;
          // $clinic->city = $request->city;
          // $clinic->pin = $request->pin;
@@ -187,7 +190,7 @@ public function newUser(){
     $clinic->save();
     $clinic->users()->attach($user);
 
-    Newclinictoken::where(['newclinictoken'=>$request->newclinictoken])->delete();
+    // Newclinictoken::where(['newclinictoken'=>$request->newclinictoken])->delete();
 
     Session::flash('message','Success!!');
     Session::flash('text','New Clinic Registered successfully!!');
