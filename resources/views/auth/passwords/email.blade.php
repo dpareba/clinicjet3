@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title')
+    | Reset Password
+@endsection
 <!-- Main Content -->
 @section('content')
 <div class="container">
@@ -21,7 +23,7 @@
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required data-parsley-required-message="*Please enter your registered email-id" placeholder="Registered email-id">
+                                <input id="email" type="email" class="form-control" event.preventDefault(); name="email" value="{{ old('email') }}" required data-parsley-required-message="*Please enter your registered email-id" placeholder="Registered email-id">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">

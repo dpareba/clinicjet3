@@ -8,20 +8,59 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'ClinicSnap') }}@yield('title')</title>
+    <title>{{ config('app.name', 'ClinicSnap') }} @yield('title')</title>
 
     <!-- Styles -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
-    <link href="{{asset('css/parsley.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/sweetalert.css')}}">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
-    <!-- Scripts -->
+    
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+  
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
      @yield('css')
+       <style>
+        /*Change Color of the Register Navbar*/
+        .auth-navbar{
+            background-color: #5DB7DE;
+        }
+        /*Parsleyjs css file*/
+        input.parsley-success,
+        select.parsley-success,
+        textarea.parsley-success {
+          color: #468847;
+          background-color: #DFF0D8;
+          border: 1px solid #D6E9C6;
+      }
+
+      input.parsley-error,
+      select.parsley-error,
+      textarea.parsley-error {
+          color: #B94A48;
+          background-color: #F2DEDE;
+          border: 1px solid #EED3D7;
+      }
+
+      .parsley-errors-list {
+          margin: 2px 0 3px;
+          padding: 0;
+          list-style-type: none;
+          font-size: 0.9em;
+          line-height: 0.9em;
+          opacity: 0;
+
+          transition: all .3s ease-in;
+          -o-transition: all .3s ease-in;
+          -moz-transition: all .3s ease-in;
+          -webkit-transition: all .3s ease-in;
+      }
+
+      .parsley-errors-list.filled {
+          opacity: 1;
+      }
+  </style>
 </head>
 <body>
     <div id="app">
@@ -86,9 +125,13 @@
 
     <!-- Scripts -->
     <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('js/jquery-2.2.3.min.js')}}"></script>
-    <script src="{{asset('js/parsley.min.js')}}"></script>
-    <script src="{{asset('js/sweetalert.min.js')}}"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> --}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     @if (Session::has('message'))
         <script>
             swal({

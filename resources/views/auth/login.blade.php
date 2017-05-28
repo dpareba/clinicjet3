@@ -17,7 +17,7 @@
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required data-parsley-required-message="*Your registered email is required!" autofocus placeholder="Enter Email Address">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" event.preventDefault(); required data-parsley-required-message="*Your registered email is required!" autofocus placeholder="Enter Email Address">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">

@@ -12,6 +12,7 @@ use Illuminate\Http\Request; //Added
 use Illuminate\Auth\Events\Registered; //Added
 use Mail; //Added
 use App\Mail\ConfirmationEmail; //Added
+use App\Speciality;//added
 
 class RegisterController extends Controller
 {
@@ -45,6 +46,12 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
+    public function showRegistrationForm()
+    {
+        $specialities = Speciality::all();
+        return view('auth.register')->withSpecialities($specialities);
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -53,17 +60,28 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        if ($data['doctype']=="RECEPTIONIST") {
+           return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
-            'passkey' => 'required|exists:passkeys,passkey'
-        ],[
-            'passkey.exists' => 'Invalid Passkey!!'
-        ]);
-
-
+            'phone' => 'required|min:10|max:10',
+            'doctype' => 'required'
+            ]);
+       }else{
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'phone' => 'required|min:10|max:10',
+            'doctype' => 'required',
+            'speciality' => 'required'
+            ]);
     }
+
+
+
+}
 
     /**
      * Create a new user instance after a valid registration.
@@ -73,13 +91,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        Passkey::where('passkey',$data['passkey'])->delete();
-        
-        return User::create([
+         if ($data['doctype']=="RECEPTIONIST") {
+            return User::create([
             'name' => Str::upper($data['name']),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            'phone' => $data['phone'],
+            'speciality_id' => "73",
+            'doctype' => $data['doctype'] 
+            ]);
+        }else{
+            return User::create([
+            'name' => Str::upper($data['name']),
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
+            'speciality_id' => $data['speciality'],
+            'doctype' => $data['doctype'] 
+            ]);
+        }
+        
+        
     }
 
     public function register(Request $request)

@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => 'hello@example.com',
-        'name' => 'ClinicSnap Support',
+        'address' => 'support@clinicjet.com',
+        'name' => 'ClinicJet Support',
     ],
 
     /*

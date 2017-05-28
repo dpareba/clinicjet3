@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->boolean('verified')->default(false);
             $table->string('token')->nullable();
             $table->string('avatar')->default('default.jpg');
+            $table->string('phone');
+            $table->string('doctype');
+            $table->boolean('isActivated')->default(false);
             $table->boolean('isClinicAdmin')->default(false);
             $table->boolean('isSuperAdmin')->default(false);
             $table->boolean('isRemoteDoc')->default(false);
