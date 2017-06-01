@@ -84,7 +84,7 @@ View/Edit Patients Details
 <!-- /.row -->
 
 <div class="row">
-  <div class="{{Auth::user()->isRemoteDoc?'col-md-3':'col-md-4'}}">
+  <div class="{{Auth::user()->isRemoteDoc?'col-md-3':'col-md-3'}}">
     <form action="{{route('patients.visits')}}" method="POST">
       {{csrf_field()}}
       <input type="hidden" name="patient_id" value="{{$patient->id}}">
@@ -99,17 +99,21 @@ View/Edit Patients Details
     <a href="{{route('patients.edit',$patient->id)}}" class="btn btn-warning btn-block">Edit Patient Details</a>
   </div>
   @else
-  <div class="col-md-4">
+  <div class="col-md-3">
     {{-- <form action="{{route('patients.createconsult')}}" method="POST">
       {{csrf_field()}}
       <input type="hidden" name="patient_id" value="{{$patient->id}}">
       <button type="submit" class="btn btn-success btn-block">New Patient Consultation</button>
     </form> --}}
     <a href="{{route('patients.createconsult',$patient->id)}}" class="btn btn-success btn-block">New Patient Consultation</a>
+
+  </div>
+   <div class="col-md-3">
+    <a href="{{route('patients.edit',$patient->id)}}" class="btn btn-warning btn-block">Edit Patient Details</a>
   </div>
   @endif
   
-  <div class="{{Auth::user()->isRemoteDoc?'col-md-3':'col-md-4'}}">
+  <div class="{{Auth::user()->isRemoteDoc?'col-md-3':'col-md-3'}}">
     <a href="{{route('patients.index')}}" class="btn btn-block btn-danger">Cancel</a>
   </div>
 </div>

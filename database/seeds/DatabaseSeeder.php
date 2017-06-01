@@ -11,6 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('medicines')->insert(['name'=>'DEC 100 MG TABLET 10','composition'=>'GUAIFENESIN + DIETHYLCARBAMAZINE + CHLORPHENIRAMIN | P1E6']);
+
+        
         DB::table('specialities')->insert(['speciality'=>'ALLERGY & IMMUNOLOGY']);
         DB::table('specialities')->insert(['speciality'=>'ALTERNATIVE MEDICINE']);
         DB::table('specialities')->insert(['speciality'=>'ANATOMY & PHYSIOLOGY']);
@@ -2070,6 +2073,6 @@ class DatabaseSeeder extends Seeder
         // DB::table('states')->insert(['state'=>'Uttarakhand']);
         // DB::table('states')->insert(['state'=>'West Bengal']);
         
-       
+        
     }
 }

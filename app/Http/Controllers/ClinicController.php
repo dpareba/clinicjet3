@@ -12,6 +12,7 @@ use Auth;
 use App\Clinic;
 use App\Clinictoken;
 use App\Newclinictoken;
+use Illuminate\Support\Str;
 
 class ClinicController extends Controller
 {
@@ -46,42 +47,42 @@ public function cliniccheck(Request $request){
 
     if((User::find(Auth::user()->id)->clinics()->where(['cliniccode'=>$request->cliniccode])->first())==null){
         $this->validate($request,[
-            'cliniccode'=>'required|digits:4|exists:clinics,cliniccode',
-            'clinictoken'=>'required|exists:clinictokens,clinictoken|max:255',
+            'cliniccode'=>'required|digits:4|exists:clinics,cliniccode'
+            // 'clinictoken'=>'required|exists:clinictokens,clinictoken|max:255',
             ],[
             'cliniccode.required'=>'The Clinic Code is required to be filled in.',
             'cliniccode.digits'=>'The Clinic Code must consist of 4 digits',
             'cliniccode.exists'=>'Clinic with the entered code does not exist.' ,
-            'clinictoken.required'=>'Clinic Token cannot be left blank!',
-            'clinictoken.exists'=>'Invalid Clinic Token!'           
+            // 'clinictoken.required'=>'Clinic Token cannot be left blank!',
+            // 'clinictoken.exists'=>'Invalid Clinic Token!'           
             ]);
     }else{
         $this->validate($request,[
-            'cliniccode'=>'required|digits:4|exists:clinics,cliniccode|unique:clinics,cliniccode',
-            'clinictoken'=>'required|exists:clinictokens,clinictoken|max:255',
+            'cliniccode'=>'required|digits:4|exists:clinics,cliniccode|unique:clinics,cliniccode'
+            // 'clinictoken'=>'required|exists:clinictokens,clinictoken|max:255',
             ],[
             'cliniccode.required'=>'The Clinic Code is required to be filled in.',
             'cliniccode.digits'=>'The Clinic Code must consist of 4 digits',
             'cliniccode.exists'=>'Clinic with the entered code does not exist.',
             'cliniccode.unique'=>'Clinic is already registered.',
-            'clinictoken.required'=>'Clinic Token cannot be left blank!',
-            'clinictoken.exists'=>'Invalid Clinic Token!'           
+            // 'clinictoken.required'=>'Clinic Token cannot be left blank!',
+            // 'clinictoken.exists'=>'Invalid Clinic Token!'           
             ]);
     }
 
     $clinic = Clinic::where(['cliniccode'=>$request->cliniccode])->first();
     $user = User::find(Auth::user()->id);
-    if ($clinic->isRemoteClinic) {
-        $user->isRemoteDoc = true;
-        $user->save();
-    }else{
-        $user->isRemoteDoc = false;
-        $user->save();
-    }
+    // if ($clinic->isRemoteClinic) {
+    //     $user->isRemoteDoc = true;
+    //     $user->save();
+    // }else{
+    //     $user->isRemoteDoc = false;
+    //     $user->save();
+    // }
 
     $clinic->users()->save($user);
 
-    Clinictoken::where(['clinictoken'=>$request->clinictoken])->delete();
+    // Clinictoken::where(['clinictoken'=>$request->clinictoken])->delete();
 
     Session::flash('message','Success!!');
     Session::flash('text','New Clinic Added successfully!!');
@@ -167,7 +168,7 @@ public function newUser(){
 
         $user = User::find(Auth::user()->id);
         $clinic = new Clinic;
-        $clinic->name = $request->name;
+        $clinic->name = Str::upper($request->name);
     //     if ($request->cliniclocation == "Kenya") {
     //        $clinic->isRemoteClinic = true;
     //        $user->isRemoteDoc = true;
@@ -177,8 +178,8 @@ public function newUser(){
     //     $user->isRemoteDoc = false;
     //     $user->save();
     // }
-    $clinic->address = $request->address;
-    $clinic->clinictype = $request->clinictype;
+    $clinic->address = Str::upper($request->address);
+    $clinic->clinictype = Str::upper($request->clinictype);
          // $clinic->state = $request->state;
          // $clinic->city = $request->city;
          // $clinic->pin = $request->pin;

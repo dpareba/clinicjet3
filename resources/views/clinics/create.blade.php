@@ -18,7 +18,7 @@
 
                             <div class="col-md-6">
                                                                   
-                                   <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" event.preventDefault(); autofocus required="" data-parsley-required-message="*Clinic Name cannot be blank!" placeholder="Clinic Name" maxlength="255"> 
+                                   <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" event.preventDefault(); style="text-transform: uppercase;" autofocus required="" data-parsley-required-message="*Clinic Name cannot be blank!" placeholder="Clinic Name" maxlength="255"> 
                                                        
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -66,10 +66,10 @@
                             <div class="col-md-6">
                                 <select required="" data-parsley-required-message="*Clinic Type is required" name="clinictype" id="clinictype" class="js-example-basic-single form-control">
                                     <option value="" selected="selected"></option>
-                                    <option value="Hospital OPD" >Hospital OPD</option>
-                                    <option value="Nursing Home OPD" >Nursing Home OPD</option>
-                                    <option value="Polyclinic<" >Polyclinic</option>
-                                    <option value="Private Clinic" >Private Clinic</option>
+                                    <option value="Hospital OPD" >HOSPITAL OPD</option>
+                                    <option value="Nursing Home OPD" >NURSING HOME OPD</option>
+                                    <option value="Polyclinic" >POLYCLINIC</option>
+                                    <option value="Private Clinic" >PRIVATE CLINIC</option>
                                 </select>
 
                                 @if ($errors->has('clinictype'))
@@ -84,7 +84,7 @@
                             <label for="address" class="col-md-4 control-label">Clinic Address</label>
 
                             <div class="col-md-6">
-                                <textarea name="address" id="address" cols="30" rows="4" class="form-control" required=""  data-parsley-required-message="*Clinic Address is required" placeholder="Clinic Address" style="resize: none;">{{old('address')}}</textarea>
+                                <textarea event.preventDefault(); style="text-transform: uppercase;" name="address" id="address" cols="30" rows="4" class="form-control" required=""  data-parsley-required-message="*Clinic Address is required" placeholder="Clinic Address" style="resize: none;">{{old('address')}}</textarea>
                               
                                 @if ($errors->has('address'))
                                     <span class="help-block">
@@ -144,7 +144,7 @@
                             <label for="phoneprimary" class="col-md-4 control-label">Primary Phone{{-- <br><small><i>(For Landlines,prefix STD code without the leading 0, eg: 2266990077)</i></small> --}}</label>
                             
                             <div class="col-md-6">
-                                <input id="phoneprimary" required="" data-parsley-type="digits" class="form-control" name="phoneprimary" value="{{ old('phoneprimary') }}"   placeholder="Primary Phone" minlength="10" maxlength="10" data-parsley-required-message="*Clinic Phone Number is required">
+                                <input event.preventDefault(); id="phoneprimary" required="" data-parsley-type="digits" class="form-control" name="phoneprimary" value="{{ old('phoneprimary') }}"   placeholder="Primary Phone" minlength="10" maxlength="10" data-parsley-required-message="*Clinic Phone Number is required">
 
                                 @if ($errors->has('phoneprimary'))
                                     <span class="help-block">

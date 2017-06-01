@@ -28,7 +28,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('clinictoken') ? ' has-error' : '' }}">
+                       {{--  <div class="form-group{{ $errors->has('clinictoken') ? ' has-error' : '' }}">
                             <label for="clinictoken" class="col-md-4 control-label">Clinic Token</label>
 
                             <div class="col-md-6">
@@ -40,7 +40,7 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

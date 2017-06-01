@@ -61,7 +61,7 @@ Add Consultation for Patient Visit
 		</div>
 	</div>
 	@endif
-	@if (count($patient->visits) != 0)
+	{{-- @if (count($patient->visits) != 0) --}}
 	<div class="row">
 		<div class="col-md-12">
 			<div class="box box-solid box-primary">
@@ -393,7 +393,9 @@ Add Consultation for Patient Visit
 					</div>
 				</div>
 				{{-- .row --}}
-
+				@if (count($patient->visits) != 0)
+					{{-- expr --}}
+				
 				<h2 class="page-header">PATIENT MEDICAL HISTORY</h2>
 
 				{{-- {{$patient->visits}} --}}
@@ -404,7 +406,7 @@ Add Consultation for Patient Visit
 								@if (Auth::user()->isRemoteDoc)
 								<h3 class="box-title">Patient Medical History (Kenya Time)</h3>
 								@else
-								<h3 class="box-title">Patient Medical History (Indian Time)</h3>
+								<h3 class="box-title">Patient Medical History</h3>
 								@endif
 							</div>{{-- .box-header --}}
 
@@ -412,7 +414,7 @@ Add Consultation for Patient Visit
 								<div class="box-group" id="accordion">
 									<?php $count=1; ?>
 									@foreach ($patient->visits as $visit){{-- .loop a --}}
-									<div class="panel box box-solid {{$visit->user->isRemoteDoc?'box-primary':'box-warning'}}">
+									<div class="panel box box-solid {{$count%2!=0 ?'box-primary':'box-warning'}}">
 										<div class="box-header with-border">
 											<h4 class="box-title">
 												<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$count}}">
@@ -427,7 +429,7 @@ Add Consultation for Patient Visit
 												@if ($visit->user->isRemoteDoc)
 												<span data-toggle="tooltip" title="Kenyan Consult" class="badge bg-blue">Kenyan Consult</span>
 												@else
-												<span data-toggle="tooltip" title="Indian Consult" class="badge bg-yellow">Indian Consult</span>
+												{{-- <span data-toggle="tooltip" title="Indian Consult" class="badge bg-yellow">Indian Consult</span> --}}
 												@endif
 
 											</div>
@@ -550,12 +552,12 @@ Add Consultation for Patient Visit
 												</dl>
 												
 												
-												@if (Auth::user()->isRemoteDoc)
+												{{-- @if (Auth::user()->isRemoteDoc) --}}
 												<div class="box-footer clearfix">
-													<a href="#" class="btn btn btn-success  pull-right">Print</a>
+													<a href="{{route('print.visits',$visit->id)}}" class="btn btn btn-success  pull-right"  target="_blank">Print</a>
 												</div>{{-- expr --}}
-												@endif
-
+												{{-- @endif
+ --}}
 												@endif
 											</div>{{-- .box-body --}}
 										</div>
@@ -567,8 +569,9 @@ Add Consultation for Patient Visit
 						</div>{{-- .box --}}
 					</div>
 				</div>
+				@endif
 				{{-- .row --}}
-				@else
+				{{-- @else
 				<div class="row">
 					<div class="col-md-12 ">
 						<div class="box box-default">
@@ -588,7 +591,7 @@ Add Consultation for Patient Visit
 						</div>
 					</div>
 				</div>
-				@endif
+				@endif --}}
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4">
 						<a href="{{route('patients.show',$patient->id)}}" class="btn btn-primary btn-block"><< Back</a>

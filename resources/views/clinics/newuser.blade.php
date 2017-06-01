@@ -10,7 +10,7 @@
                 <div class="panel-heading">First Time User ?</div>
                 <div class="panel-body">
                    <div class="row">
-                      @if (Auth::user()->doctype == "DOCTOR")
+                      @if (Auth::user()->doctype == "DOCTOR" || Auth::user()->doctype == "GP")
                       <div class="col-md-6">
                         <a href="{{route('clinics.create')}}" class="btn btn-success btn-block">Create a New Clinic</a>
                     </div>

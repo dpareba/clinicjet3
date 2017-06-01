@@ -31,63 +31,76 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                    <div class="row">
                     <div class="col-md-8 col-md-offset-4">
+                            <label class="radio-inline"><input type="radio" name="doctype" value="GP" checked="" id="doc">GENERAL PRACTITIONER</label>
+                        
+                        <label class="radio-inline"><input type="radio" name="doctype" value="AYUSH" checked="" id="doc">AYUSH DOCTOR</label>
                         <label class="radio-inline"><input type="radio" name="doctype" value="DOCTOR" checked="" id="doc">DOCTOR</label>
-                        <label class="radio-inline"><input type="radio" name="doctype" value="JUNIOR DOCTOR" id="jrdoc">JUNIOR DOCTOR</label>
-                        <label class="radio-inline"><input type="radio" name="doctype" value="RECEPTIONIST" id="rep">RECEPTIONIST</label>
+
                         @if ($errors->has('name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('name') }}</strong>
                         </span>
                         @endif
+                     </div>   
                     </div>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-4">
+                           <label class="radio-inline"><input type="radio" name="doctype" value="JUNIOR DOCTOR" id="jrdoc">JUNIOR DOCTOR</label>
+                           <label class="radio-inline"><input type="radio" name="doctype" value="RECEPTIONIST" id="rep">RECEPTIONIST</label>
+                           <label class="radio-inline"><input type="radio" name="doctype" value="OTHERS" id="rep">OTHERS</label>
+                       </div>
+
+                   </div>
+
+               </div>
+
+               <div class="form-group{{ $errors->has('speciality') ? ' has-error' : '' }}">
+                <label for="speciality" class="col-md-4 control-label">Select Specialty</label>
+
+                <div class="col-md-6">
+                    <select required="" data-parsley-required-message="*Kindly Select a Specialty" name="speciality" id="speciality" class="js-example-basic-single form-control">
+                        @foreach ($specialities as $speciality)
+                        <option value="{{$speciality->id}}" {{$speciality->speciality == 'GENERAL MEDICINE' ? 'selected="selected"' : ''}}>{{$speciality->speciality}}</option>
+                        @endforeach
+                    </select>
+
+                    @if ($errors->has('speciality'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('speciality') }}</strong>
+                    </span>
+                    @endif
                 </div>
+            </div>
 
-                <div class="form-group{{ $errors->has('speciality') ? ' has-error' : '' }}">
-                        <label for="speciality" class="col-md-4 control-label">Select Specialty</label>
+            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
-                        <div class="col-md-6">
-                            <select required="" data-parsley-required-message="*Kindly Select a Specialty" name="speciality" id="speciality" class="js-example-basic-single form-control">
-                                @foreach ($specialities as $speciality)
-                                <option value="{{$speciality->id}}" {{$speciality->speciality == 'GENERAL MEDICINE' ? 'selected="selected"' : ''}}>{{$speciality->speciality}}</option>
-                                @endforeach
-                            </select>
+                <div class="col-md-6">
+                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required="" data-parsley-required-message="*A valid Email is required to register" placeholder="Email Address">
 
-                            @if ($errors->has('speciality'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('speciality') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-                    </div>
-
-                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                    <div class="col-md-6">
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required="" data-parsley-required-message="*A valid Email is required to register" placeholder="Email Address">
-
-                        @if ($errors->has('email'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                        @endif
-                    </div>
+                    @if ($errors->has('email'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                    @endif
                 </div>
+            </div>
 
-                <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
-                        <label for="phone" class="col-md-4 control-label">Contact Number</label>
+            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                <label for="phone" class="col-md-4 control-label">Contact Number</label>
 
-                        <div class="col-md-6">
-                            <input id="phone" type="text"  data-parsley-pattern="(7|8|9)\d{9}" class="form-control" name="phone" value="{{ old('phone') }}" required="" data-parsley-required-message="*A valid phone is required to register" data-parsley-pattern-message="*Invalid Mobile Number" placeholder="Mobile Number">
+                <div class="col-md-6">
+                    <input id="phone" type="text" required=""  data-parsley-pattern="(7|8|9)\d{9}" class="form-control" name="phone" value="{{ old('phone') }}" data-parsley-required-message="*A valid phone is required to register" data-parsley-pattern-message="*Invalid Mobile Number" placeholder="Mobile Number">
 
-                            @if ($errors->has('phone'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('phone') }}</strong>
-                            </span>
-                            @endif
-                        </div>
-                    </div>
+                    @if ($errors->has('phone'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('phone') }}</strong>
+                    </span>
+                    @endif
+                </div>
+            </div>
 
                          {{-- <div class="form-group{{ $errors->has('passkey') ? ' has-error' : '' }}">
                             <label for="passkey" class="col-md-4 control-label">Passkey</label>
@@ -148,18 +161,18 @@
 </div>
 @endsection
 @section('js')
-    <script>
-        $("#doc").click(function(){
-            $("#speciality").attr("disabled",false);
-            $("#speciality").val("22");
-        });
-        $("#jrdoc").click(function(){
-            $("#speciality").attr("disabled",false);
-            $("#speciality").val("22");
-        });
-        $("#rep").click(function(){
-            $("#speciality").attr("disabled",true);
-            $("#speciality").val("73");
-        });
-    </script>
+<script>
+    $("#doc").click(function(){
+        $("#speciality").attr("disabled",false);
+        $("#speciality").val("22");
+    });
+    $("#jrdoc").click(function(){
+        $("#speciality").attr("disabled",false);
+        $("#speciality").val("22");
+    });
+    $("#rep").click(function(){
+        $("#speciality").attr("disabled",true);
+        $("#speciality").val("73");
+    });
+</script>
 @endsection

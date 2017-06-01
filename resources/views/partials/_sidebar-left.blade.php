@@ -27,7 +27,7 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
-      @if ((Auth::user()->isRemoteDoc))
+      @if ((!Auth::user()->isRemoteDoc))
       <li class="treeview {{(Request::is('patients/create')||Request::is('patients'))?'active':''}}">
         <a href="#">
           <i class="fa fa-stethoscope"></i> <span>My Clinic Patients</span>
@@ -42,7 +42,7 @@
       </li>
       @endif
 
-      @if ((!Auth::user()->isRemoteDoc))
+      {{-- @if ((!Auth::user()->isRemoteDoc))
       <li class="treeview {{(Request::is('patients/create')||Request::is('patients'))?'active':''}}">
         <a href="#">
           <i class="fa fa-hospital-o"></i> <span>My Clinic Patients</span>
@@ -55,7 +55,7 @@
           
         </ul>
       </li>
-      @endif
+      @endif --}}
 
 
         {{-- <li class="treeview">
@@ -125,7 +125,7 @@
           </a>
           </li>
           @endif --}}
-          @if (Auth::user()->isSuperAdmin || Session::has('isclinicadmin'))
+          {{-- @if (Auth::user()->isSuperAdmin || Session::has('isclinicadmin'))
           <li class="{{Request::is('passkeys')?'active':''}}">
             <a href="{{route('passkeys.index')}}">
               <i class="fa fa-user-secret"></i> <span>Passkey</span>
@@ -134,9 +134,9 @@
               </span>
             </a>
           </li>
-          @endif
+          @endif --}}
 
-          @if (Auth::user()->isSuperAdmin || Session::has('isclinicadmin'))
+          {{-- @if (Auth::user()->isSuperAdmin || Session::has('isclinicadmin'))
           <li class="{{Request::is('clinictokens')?'active':''}}">
             <a href="{{route('clinictokens.index')}}">
               <i class="fa fa-user-secret"></i> <span>Clinic Token</span>
@@ -145,7 +145,7 @@
               </span>
             </a>
           </li>
-          @endif
+          @endif --}}
 
           @if (Auth::user()->isSuperAdmin || Session::has('isclinicadmin'))
           <li class="{{Request::is('print')?'active':''}}">

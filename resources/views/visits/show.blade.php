@@ -50,7 +50,7 @@ Patient Visit Details
 					@if (Auth::user()->isRemoteDoc)
 					<h3 class="box-title">Patient Visit (Kenya Time)</h3>
 					@else
-					<h3 class="box-title">Patient Visit (Indian Time)</h3>
+					<h3 class="box-title">Patient Visit </h3>
 					@endif
 				</div>{{-- .box-header --}}
 
@@ -58,7 +58,7 @@ Patient Visit Details
 					<div class="box-group" id="accordion">
 						<?php $count=1; ?>
 						@foreach ($patient->visits as $visit){{-- .loop a --}}
-						<div class="panel box box-solid {{$visit->user->isRemoteDoc?'box-primary':'box-warning'}}">
+						<div class="panel box box-solid {{$count%2!=0?'box-primary':'box-warning'}}">
 							<div class="box-header with-border">
 								<h4 class="box-title">
 									<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$count}}">
@@ -73,7 +73,7 @@ Patient Visit Details
 									@if ($visit->user->isRemoteDoc)
 									<span data-toggle="tooltip" title="Kenyan Consult" class="badge bg-blue">Kenyan Consult</span>
 									@else
-									<span data-toggle="tooltip" title="Indian Consult" class="badge bg-yellow">Indian Consult</span>
+{{-- 									<span data-toggle="tooltip" title="Indian Consult" class="badge bg-yellow">Indian Consult</span> --}}
 									@endif
 									
 								</div>
@@ -195,11 +195,11 @@ Patient Visit Details
 									</dl>
 
 									
-									@if (Auth::user()->isRemoteDoc)
+									{{-- @if (Auth::user()->isRemoteDoc) --}}
 									<div class="box-footer clearfix">
 										<a href="{{route('print.visits',$visit->id)}}" class="btn btn btn-success  pull-right" target="_blank">Print</a>
 									</div>
-									@endif
+									{{-- @endif --}}
 									@endif
 								</div>{{-- .box-body --}}
 							</div>
