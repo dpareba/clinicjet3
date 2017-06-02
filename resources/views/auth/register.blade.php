@@ -33,10 +33,10 @@
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <div class="row">
                     <div class="col-md-8 col-md-offset-4">
-                            <label class="radio-inline"><input type="radio" name="doctype" value="GP" checked="" id="doc">GENERAL PRACTITIONER</label>
+                            <label class="radio-inline"><input type="radio" name="doctype" value="GP" checked="" id="gp">GENERAL PRACTITIONER</label>
                         
-                        <label class="radio-inline"><input type="radio" name="doctype" value="AYUSH" checked="" id="doc">AYUSH DOCTOR</label>
-                        <label class="radio-inline"><input type="radio" name="doctype" value="DOCTOR" checked="" id="doc">DOCTOR</label>
+                        <label class="radio-inline"><input type="radio" name="doctype" value="AYUSH"  id="ayush">AYUSH DOCTOR</label>
+                        <label class="radio-inline"><input type="radio" name="doctype" value="DOCTOR"  id="doc">DOCTOR</label>
 
                         @if ($errors->has('name'))
                         <span class="help-block">

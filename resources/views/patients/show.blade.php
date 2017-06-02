@@ -83,7 +83,7 @@ View/Edit Patients Details
 </div>
 <!-- /.row -->
 
-<div class="row">
+{{-- <div class="row">
   <div class="{{Auth::user()->isRemoteDoc?'col-md-3':'col-md-3'}}">
     <form action="{{route('patients.visits')}}" method="POST">
       {{csrf_field()}}
@@ -99,16 +99,16 @@ View/Edit Patients Details
     <a href="{{route('patients.edit',$patient->id)}}" class="btn btn-warning btn-block">Edit Patient Details</a>
   </div>
   @else
-  <div class="col-md-3">
+  <div class="col-md-3"> --}}
     {{-- <form action="{{route('patients.createconsult')}}" method="POST">
       {{csrf_field()}}
       <input type="hidden" name="patient_id" value="{{$patient->id}}">
       <button type="submit" class="btn btn-success btn-block">New Patient Consultation</button>
     </form> --}}
-    <a href="{{route('patients.createconsult',$patient->id)}}" class="btn btn-success btn-block">New Patient Consultation</a>
+    {{-- <a href="{{route('patients.createconsult',$patient->id)}}" class="btn btn-success btn-block">New Patient Consultation</a>
 
   </div>
-   <div class="col-md-3">
+  <div class="col-md-3">
     <a href="{{route('patients.edit',$patient->id)}}" class="btn btn-warning btn-block">Edit Patient Details</a>
   </div>
   @endif
@@ -116,6 +116,35 @@ View/Edit Patients Details
   <div class="{{Auth::user()->isRemoteDoc?'col-md-3':'col-md-3'}}">
     <a href="{{route('patients.index')}}" class="btn btn-block btn-danger">Cancel</a>
   </div>
+</div> --}}
+
+{{-- This is for receptionist functionality --}}
+<div class="row">
+  @if (Auth::user()->doctype == "RECEPTIONIST")
+  <div class="col-md-6">
+    <a href="{{route('patients.edit',$patient->id)}}" class="btn btn-warning btn-block">Edit Patient Details</a>
+  </div>
+  <div class="col-md-6">
+    <a href="{{route('patients.index')}}" class="btn btn-block btn-danger">Cancel</a>
+  </div>
+  @else
+  <div class="col-md-3">
+    <form action="{{route('patients.visits')}}" method="POST">
+      {{csrf_field()}}
+      <input type="hidden" name="patient_id" value="{{$patient->id}}">
+      <button type="submit" class="btn btn-primary btn-block">View Patient Visits</button>
+    </form>
+  </div>
+  <div class="col-md-3">
+    <a href="{{route('patients.createconsult',$patient->id)}}" class="btn btn-success btn-block">New Patient Consultation</a>
+  </div>
+  <div class="col-md-3">
+    <a href="{{route('patients.edit',$patient->id)}}" class="btn btn-warning btn-block">Edit Patient Details</a>
+  </div>
+  <div class="col-md-3">
+    <a href="{{route('patients.index')}}" class="btn btn-block btn-danger">Cancel</a>
+  </div>
+  @endif      
 </div>
 
 @stop

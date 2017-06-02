@@ -12,6 +12,7 @@ use App\Clinic;
 use App\Pathology;
 use Session;
 use Carbon\Carbon;
+use Illuminate\Support\Str; //Added
 
 class PatientController extends Controller
 {
@@ -81,7 +82,7 @@ class PatientController extends Controller
         //$clinic = Clinic::find($clinicid);
        // dd($clinic);
         $patient = new Patient;
-        $patient->name = $request->name;
+        $patient->name = Str::upper($request->name);
         if ($request->dob == "") {
             $input = '01/01/1900';
         }else{
@@ -90,12 +91,12 @@ class PatientController extends Controller
         $format = 'm/d/Y';
         $date = Carbon::createFromFormat($format,$input);
         $patient->dob = $date;
-        $patient->gender = $request->gender;
+        $patient->gender = Str::upper($request->gender);
         $patient->phoneprimary = $request->phoneprimary;
         $patient->phonealternate = $request->phonealternate;
         $patient->email = $request->email;
-        $patient->address = $request->address;
-        $patient->allergies = $request->allergies;
+        $patient->address = Str::upper($request->address);
+        $patient->allergies = Str::upper($request->allergies);
         $patient->bloodgroup = $request->bloodgroup;
         $patient->patientcode = rand(1000,9999);
         $patient->created_by = Auth::user()->id;

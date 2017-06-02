@@ -25,7 +25,7 @@ Register new patients in clinic
 								<label class="control-label" for="name">Full Name</label>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
-									<input required="" value="{{old('name')}}" autofocus="" type="text" class="form-control" maxlength="255" id="name" name="name" placeholder="Enter Patient's Full Name"  data-parsley-required-message="Patient Name cannot be left blank">
+									<input event.preventDefault(); style="text-transform: uppercase;" required="" value="{{old('name')}}" autofocus="" type="text" class="form-control" maxlength="255" id="name" name="name" placeholder="Enter Patient's Full Name"  data-parsley-required-message="Patient Name cannot be left blank">
 								</div>
 
 								<span class="help-block">{{$errors->first('name')}}</span>
@@ -52,9 +52,9 @@ Register new patients in clinic
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-transgender-alt"></i></span>
 								<select required="" name="gender" id="gender" class="form-control">
-									<option value="Male" selected="selected">Male</option>
-									<option value="Female" >Female</option>
-									<option value="Other" >Other</option>
+									<option value="Male" selected="selected">MALE</option>
+									<option value="Female" >FEMALE</option>
+									<option value="Other" >OTHER</option>
 								</select>
 							</div>
 							<span class="help-block">{{$errors->first('gender')}}</span>
@@ -66,7 +66,7 @@ Register new patients in clinic
 							<div class="input-group">
 								<span  class="input-group-addon"><i class="fa fa-tint"></i></span>
 								<select required="" name="bloodgroup" id="bloodgroup" class="form-control">
-									<option value="Not Known" selected="selected">Not Known</option>
+									<option value="Not Known" selected="selected">NOT KNOWN</option>
 									<option value="A+" >A RhD positive (A+)</option>
 									<option value="A-" >A RhD negative (A-)</option>
 									<option value="B+" >B RhD positive (B+)</option>
@@ -87,7 +87,7 @@ Register new patients in clinic
 							<label class="control-label" for="allergies">Known Allergies</label>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-bug"></i></span>
-								<textarea  name="allergies" id="allergies" class="form-control" cols="30" rows="5" style="resize: none;"></textarea>
+								<textarea  name="allergies" id="allergies" class="form-control" cols="30" rows="5" style="resize: none;text-transform: uppercase;"></textarea>
 							</div>
 							<span class="help-block">{{$errors->first('allergies')}}</span>
 						</div>
@@ -97,7 +97,7 @@ Register new patients in clinic
 							<label class="control-label" for="address">Postal Address</label>
 							<div class="input-group">
 								<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-								<textarea required=""  name="address" id="address" class="form-control" cols="30" rows="5" style="resize: none;">{{old('address')}}</textarea>
+								<textarea required=""  name="address" id="address" class="form-control" cols="30" rows="5" style="resize: none;text-transform: uppercase;">{{old('address')}}</textarea>
 							</div>
 							<span class="help-block">{{$errors->first('address')}}</span>
 						</div>

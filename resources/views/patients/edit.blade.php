@@ -27,7 +27,7 @@
                       <label class="control-label" for="name">Full Name</label>
                       <div class="input-group">
                       	 <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
-                      	<input required="" value="{{$patient->name}}" autofocus="" type="text" class="form-control" maxlength="255" id="name" name="name"   data-parsley-required-message="Patient Name cannot be left blank">
+                      	<input event.preventDefault(); style="text-transform: uppercase;" autofocus="" required="" value="{{$patient->name}}" autofocus="" type="text" class="form-control" maxlength="255" id="name" name="name"   data-parsley-required-message="Patient Name cannot be left blank">
                       </div>
                       
                       <span class="help-block">{{$errors->first('name')}}</span>
@@ -38,9 +38,9 @@
                       <div class="input-group">
                       	<span class="input-group-addon"><i class="fa fa-transgender-alt"></i></span>
                       	<select required="" name="gender" id="gender" class="form-control">
-                      	<option value="Male" {{($patient->gender=="Male")?'selected="selected"':''}}>Male</option>
-                      	<option value="Female" {{($patient->gender=="Female")?'selected="selected"':''}}>Female</option>
-                      	<option value="Other" {{($patient->gender=="Other")?'selected="selected"':''}}>Other</option>
+                      	<option value="Male" {{($patient->gender=="MALE")?'selected="selected"':''}}>MALE</option>
+                      	<option value="Female" {{($patient->gender=="FEMALE")?'selected="selected"':''}}>FEMALE</option>
+                      	<option value="Other" {{($patient->gender=="OTHER")?'selected="selected"':''}}>OTHER</option>
                       </select>
                       </div>
                      <span class="help-block">{{$errors->first('gender')}}</span>
@@ -88,7 +88,7 @@
                       <label class="control-label" for="address">Postal Address</label>
                       <div class="input-group">
                       	<span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                      	<textarea  name="address" id="address" class="form-control" cols="30" rows="5" style="resize: none;">{{$patient->address}}</textarea>
+                      	<textarea  name="address" id="address" class="form-control" cols="30" rows="5" style="resize: none;text-transform: uppercase;">{{$patient->address}}</textarea>
                       </div>
                  		<span class="help-block">{{$errors->first('address')}}</span>
                     </div>
