@@ -11,9 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('medicines')->insert(['name'=>'DEC 100 MG TABLET 10','composition'=>'GUAIFENESIN + DIETHYLCARBAMAZINE + CHLORPHENIRAMIN | P1E6']);
+        
 
         
+
+
         DB::table('specialities')->insert(['speciality'=>'ALLERGY & IMMUNOLOGY']);
         DB::table('specialities')->insert(['speciality'=>'ALTERNATIVE MEDICINE']);
         DB::table('specialities')->insert(['speciality'=>'ANATOMY & PHYSIOLOGY']);
@@ -1984,8 +1986,8 @@ class DatabaseSeeder extends Seeder
             ]);
         // $this->call(UsersTableSeeder::class);
         DB::table('passkeys')->insert([
-        	'passkey'=>'hello1'
-        	]);
+         'passkey'=>'hello1'
+         ]);
         DB::table('passkeys')->insert([
             'passkey'=>'hello2'
             ]);
@@ -2035,7 +2037,17 @@ class DatabaseSeeder extends Seeder
             'clinictoken'=>'mello9'
             ]);
 
-        
+        DB::table('users')->insert(['name'=>'SYSTEM USER','email'=>'system@system.com','password'=>bcrypt('hello79'),'phone'=>'1236547896','doctype'=>'system','speciality_id'=>1]);
+        DB::table('users')->insert(['name'=>'DILIP PAREBA','email'=>'dp@gmail.com','password'=>bcrypt('hello79'),'phone'=>'1236547893','doctype'=>'GP','speciality_id'=>1]);
+        DB::table('users')->insert(['name'=>'JOEY BLUE','email'=>'jb@gmail.com','password'=>bcrypt('hello79'),'phone'=>'1236547891','doctype'=>'GP','speciality_id'=>1]);
+
+        DB::table('medicines')->insert(['name'=>'DEC 100 MG TABLET 10','composition'=>'GUAIFENESIN + DIETHYLCARBAMAZINE + CHLORPHENIRAMIN | P1E6','user_id'=>1]);
+        DB::table('medicines')->insert(['name'=>'ACIVAS P 100/325/15 MG TABLET 10','composition'=>'ACECLOFENAC + PARACETAMOL + SERRATIOPEPTIDASE | M1A7','user_id'=>2]);
+        DB::table('medicines')->insert(['name'=>'COVERSYL AM 5/4 MG TABLET 10','composition'=>'AMLODIPINE + PERINDOPRIL | C8F3','user_id'=>3]);
+
+
+
+
         // DB::table('states')->insert(['state'=>'Andaman and Nicobar Islands ']);
         // DB::table('states')->insert(['state'=>'Andhra Pradesh']);
         // DB::table('states')->insert(['state'=>'Arunachal Pradesh']);
@@ -2072,7 +2084,7 @@ class DatabaseSeeder extends Seeder
         // DB::table('states')->insert(['state'=>'Uttar Pradesh']);
         // DB::table('states')->insert(['state'=>'Uttarakhand']);
         // DB::table('states')->insert(['state'=>'West Bengal']);
-        
-        
+
+
     }
 }

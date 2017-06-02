@@ -193,7 +193,7 @@ Add Consultation for Patient Visit
 												<div class="form-group {{ $errors->has('medname')?'has-error':''}}">
 													<label for="medname" id="medname" class="control-label">Brand Name</label>
 													<div class="pull-right box-tools">
-														<a type="button" class="btn btn-sm" style="color: gray;">
+														<a type="button" id="addmed" class="btn btn-sm" style="color: gray;" data-toggle="modal" data-target="#myModal">
 															<i class="fa fa-plus"></i></a>
 															<a type="button" id="clear" class="btn btn btn-sm" style="color: gray;">
 																<i class="fa fa-times"></i></a>
@@ -592,6 +592,28 @@ Add Consultation for Patient Visit
 					</div>
 				</div>
 				@endif --}}
+
+				<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4">
 						<a href="{{route('patients.show',$patient->id)}}" class="btn btn-primary btn-block"><< Back</a>
@@ -953,7 +975,7 @@ $(".medname").select2({
 	
 	ajax: {
 		multiple: false,
-		url:'{{URL::route('medicines.index')}}',
+		url:'{{URL::route('medicines.index',Auth::user()->id)}}',
 		type:'GET',
 		dataType:'json',
 		delay:250,
@@ -1099,6 +1121,10 @@ $('#consult').valid();
 $("#clear").click(function(){
 	$(".medname").select2("val", " ");
 
+});
+
+$("#addmed").click(function(){
+	$(".medname").select2("val", " ");
 });
 
 $('#testme').click(function(){

@@ -123,7 +123,12 @@ Route::get('printvisit/{id}',[
 
 Route::resource('print','PrintController');
 
-Route::resource('medicines','MedicineController');
+Route::resource('medicines','MedicineController',['except'=>'index']);
+
+Route::get('medicines.index/{id}',[
+	'as'=>'medicines.index',
+	'uses'=>'MedicineController@index'
+	]);
 
 
 
