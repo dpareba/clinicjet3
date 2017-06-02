@@ -8,7 +8,7 @@
         <img src="/avatar/docs/{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>DR. {{ Auth::user()->name }} </p>
+        <p>{{Auth::user()->doctype!="RECEPTIONIST"?"DR.":''}} {{ Auth::user()->name }} </p>
 
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>

@@ -87,7 +87,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="/avatar/docs/{{Auth::user()->avatar}}" class="user-image" alt="User Image">
 
-              <span class="hidden-xs">DR. {{ Auth::user()->name }}</span>
+              <span class="hidden-xs">{{Auth::user()->doctype!="RECEPTIONIST"?"DR.":''}} {{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -95,7 +95,7 @@
                 <img src="/avatar/docs/{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
 
                 <p>
-                 DR. {{ Auth::user()->name }} 
+                 {{Auth::user()->doctype!="RECEPTIONIST"?"DR.":''}} {{ Auth::user()->name }} 
                   <small>Member since {{date('jS M y',strtotime(Auth::user()->created_at))}}</small>
                 </p>
               </li>

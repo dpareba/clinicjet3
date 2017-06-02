@@ -14,6 +14,7 @@ use Auth;
 use Validator;
 use PDF;
 use Carbon\Carbon;
+use Illuminate\Support\Str; //Added
 
 class VisitController extends Controller
 {
@@ -129,11 +130,11 @@ class VisitController extends Controller
         //dd($patient);
     $clinic = Clinic::where(['cliniccode'=>Session::get('cliniccode')])->first();
     $visit = new Visit;
-    $visit->chiefcomplaints = $request->chiefcomplaints;
-    $visit->examinationfindings = $request->examinationfindings;
-    $visit->patienthistory = $request->patienthistory;
-    $visit->diagnosis = $request->diagnosis;
-    $visit->advise = $request->advise;
+    $visit->chiefcomplaints = Str::upper($request->chiefcomplaints);
+    $visit->examinationfindings = Str::upper($request->examinationfindings);
+    $visit->patienthistory = Str::upper($request->patienthistory);
+    $visit->diagnosis = Str::upper($request->diagnosis);
+    $visit->advise = Str::upper($request->advise);
     if ($request->followuptype == "SOS") {
         $visit->isSOS = true;
         $visit->nextvisit = Carbon::createFromFormat('m/d/Y','01/01/1900');

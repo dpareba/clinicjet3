@@ -83,7 +83,7 @@ Add Consultation for Patient Visit
 									<label class="control-label" for="chiefcomplaints">Chief Complaints</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea  autofocus=""  name="chiefcomplaints" id="chiefcomplaints" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Chief Complaints" required="">{{old('chiefcomplaints')}}</textarea>
+										<textarea event.preventDefault(); style="text-transform: uppercase;" autofocus=""  name="chiefcomplaints" id="chiefcomplaints" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Chief Complaints" required="">{{old('chiefcomplaints')}}</textarea>
 									</div>
 									<span class="help-block">{{$errors->first('chiefcomplaints')}}</span>
 								</div>
@@ -93,7 +93,7 @@ Add Consultation for Patient Visit
 									<label class="control-label" for="examinationfindings">Examination Findings</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea   name="examinationfindings" id="examinationfindings" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Examination Findings" required="">{{old('examinationfindings')}}</textarea>
+										<textarea event.preventDefault(); style="text-transform: uppercase;"  name="examinationfindings" id="examinationfindings" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Examination Findings" required="">{{old('examinationfindings')}}</textarea>
 									</div>
 									<span class="help-block">{{$errors->first('examinationfindings')}}</span>
 								</div>
@@ -106,7 +106,7 @@ Add Consultation for Patient Visit
 									<label class="control-label" for="patienthistory">History</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea   name="patienthistory" id="patienthistory" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Patient History" required="">{{old('patienthistory')}}</textarea>
+										<textarea  event.preventDefault(); style="text-transform: uppercase;" name="patienthistory" id="patienthistory" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Patient History" required="">{{old('patienthistory')}}</textarea>
 									</div>
 									<span class="help-block">{{$errors->first('patienthistory')}}</span>
 								</div>
@@ -116,7 +116,7 @@ Add Consultation for Patient Visit
 									<label class="control-label" for="diagnosis">Diagnosis</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea   name="diagnosis" id="diagnosis" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Diagnosis" required="">{{old('diagnosis')}}</textarea>
+										<textarea event.preventDefault(); style="text-transform: uppercase; resize: none;"  name="diagnosis" id="diagnosis" class="form-control" cols="30" rows="3" placeholder="Diagnosis" required="">{{old('diagnosis')}}</textarea>
 									</div>
 									<span class="help-block">{{$errors->first('diagnosis')}}</span>
 								</div>
@@ -129,7 +129,7 @@ Add Consultation for Patient Visit
 									<label class="control-label" for="advise">Advise</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea  name="advise" id="advise" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Advise" required="">{{old('advise')}}</textarea>
+										<textarea event.preventDefault(); style="text-transform: uppercase;resize: none;" name="advise" id="advise" class="form-control" cols="30" rows="3"  placeholder="Advise" required="">{{old('advise')}}</textarea>
 									</div>
 									<span class="help-block">{{$errors->first('advise')}}</span>
 								</div>
