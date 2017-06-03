@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Medicine;
 use Illuminate\Support\Facades\Input;
+use Auth;
 
 class MedicineController extends Controller
 {
@@ -56,7 +57,11 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $medicine = new Medicine;
+        $medicine->name = $request->medname;
+        $medicine->composition = "hell";
+        $medicine->user_id = Auth::user()->id;
+        $medicine->save();
     }
 
     /**

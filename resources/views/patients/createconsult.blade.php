@@ -83,7 +83,7 @@ Add Consultation for Patient Visit
 									<label class="control-label" for="chiefcomplaints">Chief Complaints</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea event.preventDefault(); style="text-transform: uppercase;" autofocus=""  name="chiefcomplaints" id="chiefcomplaints" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Chief Complaints" required="">{{old('chiefcomplaints')}}</textarea>
+										<textarea event.preventDefault(); style="text-transform: uppercase;resize:none;" autofocus=""  name="chiefcomplaints" id="chiefcomplaints" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Chief Complaints" required="">{{old('chiefcomplaints')}}</textarea>
 									</div>
 									<span class="help-block">{{$errors->first('chiefcomplaints')}}</span>
 								</div>
@@ -93,7 +93,7 @@ Add Consultation for Patient Visit
 									<label class="control-label" for="examinationfindings">Examination Findings</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea event.preventDefault(); style="text-transform: uppercase;"  name="examinationfindings" id="examinationfindings" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Examination Findings" required="">{{old('examinationfindings')}}</textarea>
+										<textarea event.preventDefault(); style="text-transform: uppercase;resize: none;"  name="examinationfindings" id="examinationfindings" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Examination Findings" required="">{{old('examinationfindings')}}</textarea>
 									</div>
 									<span class="help-block">{{$errors->first('examinationfindings')}}</span>
 								</div>
@@ -106,7 +106,7 @@ Add Consultation for Patient Visit
 									<label class="control-label" for="patienthistory">History</label>
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<textarea  event.preventDefault(); style="text-transform: uppercase;" name="patienthistory" id="patienthistory" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Patient History" required="">{{old('patienthistory')}}</textarea>
+										<textarea  event.preventDefault(); style="text-transform: uppercase;resize: none;" name="patienthistory" id="patienthistory" class="form-control" cols="30" rows="3" style="resize: none;" placeholder="Patient History" required="">{{old('patienthistory')}}</textarea>
 									</div>
 									<span class="help-block">{{$errors->first('patienthistory')}}</span>
 								</div>
@@ -394,7 +394,7 @@ Add Consultation for Patient Visit
 				</div>
 				{{-- .row --}}
 				@if (count($patient->visits) != 0)
-					{{-- expr --}}
+				{{-- expr --}}
 				
 				<h2 class="page-header">PATIENT MEDICAL HISTORY</h2>
 
@@ -552,7 +552,7 @@ Add Consultation for Patient Visit
 												</dl>
 												
 												
-												 @if (Auth::user()->id == $visit->user_id)
+												@if (Auth::user()->id == $visit->user_id)
 												<div class="box-footer clearfix">
 													<a href="{{route('print.visits',$visit->id)}}" class="btn btn btn-success  pull-right"  target="_blank">Print</a>
 												</div>{{-- expr --}}
@@ -594,46 +594,78 @@ Add Consultation for Patient Visit
 				@endif --}}
 
 				<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+			{{-- 	<div id="myModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Modal Header</h4>
+							</div>
+							<div class="modal-body">
+								<p>Some text in the modal.</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
 
-  </div>
-</div>
-
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4">
-						<a href="{{route('patients.show',$patient->id)}}" class="btn btn-primary btn-block"><< Back</a>
 					</div>
-				</div>
-				@stop
+				</div> --}}
 
-				@section('scripts')
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-				{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script> --}}
-				<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-				<script>
-					var prescrip = [];
-					var prescriprowcount = 0;
+				<div class="example-modal" >
+					<div class="modal modal-info" id="myModal">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title">Add Medicine Name</h4>
+									</div>
+									<div class="modal-body">
+										<form class="formmed" action="#"  enctype="multipart/form-data" method="POST">
+											{{csrf_field()}}
+											<div class="form-group">
+												<label for="medname">Medicine Name</label>
+												<input event.preventDefault(); autofocus="" type="text" name="medname" id="medname" class="form-control">
+											</div>
+											
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+											<button type="submit" id="addmedicine" class="btn btn-primary">Save changes</button>
+										</div>
+									</form>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+						<!-- /.modal -->
+					</div>
+					<!-- /.example-modal -->
 
-					$(document).ready(function(){
+					<div class="row">
+						<div class="col-md-4 col-md-offset-4">
+							<a href="{{route('patients.show',$patient->id)}}" class="btn btn-primary btn-block"><< Back</a>
+						</div>
+					</div>
+					@stop
 
-						$(".js-example-basic-multiple").select2({
-							placeholder: "Recommended Clinical follow up"
-						});
+					@section('scripts')
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+					{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script> --}}
+					<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+					<script>
+						var prescrip = [];
+						var prescriprowcount = 0;
+
+						$(document).ready(function(){
+
+							$(".js-example-basic-multiple").select2({
+								placeholder: "Recommended Clinical follow up"
+							});
 			//Datemask dd/mm/yyyy
 			$("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
     		//Datemask2 mm/dd/yyyy
@@ -1121,6 +1153,23 @@ $('#consult').valid();
 $("#clear").click(function(){
 	$(".medname").select2("val", " ");
 
+});
+
+$("#addmedicine").click(function(e){
+	e.preventDefault();
+	$.ajax({
+		type: "POST",
+		url: "/medicines",
+		
+		data: $("form.formmed").serialize(),
+		success: function(response){
+			alert(response['response']);
+		},
+		error: function(){
+			alert('error')
+		}
+	});
+	return false;
 });
 
 $("#addmed").click(function(){
