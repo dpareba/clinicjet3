@@ -94,7 +94,7 @@
 	<div></div>
 	<br>
 	<div></div>
-	<div class="absolute"><i>signed by</i> Dr. {{Auth::user()->name}}</b></div>
+	<div class="absolute"><i>signed by</i> Dr. {{$visit->created_by_name}}</b></div>
 {{-- 	<br>
 	<div></div>
 	<div class="absolute"><i>on behalf of</i> Dr. {{$visit->created_by_name}}</div> --}}

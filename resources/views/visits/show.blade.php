@@ -195,11 +195,11 @@ Patient Visit Details
 									</dl>
 
 									
-									{{-- @if (Auth::user()->isRemoteDoc) --}}
+									@if (Auth::user()->id == $visit->user_id) 
 									<div class="box-footer clearfix">
 										<a href="{{route('print.visits',$visit->id)}}" class="btn btn btn-success  pull-right" target="_blank">Print</a>
 									</div>
-									{{-- @endif --}}
+									@endif
 									@endif
 								</div>{{-- .box-body --}}
 							</div>
