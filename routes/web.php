@@ -130,6 +130,8 @@ Route::get('medicines.index/{id}',[
 	'uses'=>'MedicineController@index'
 	]);
 
+Route::resource('pathologies','PathologyController');
+
 
 
 

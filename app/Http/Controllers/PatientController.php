@@ -125,7 +125,8 @@ class PatientController extends Controller
     public function createconsult($id){
         $patient = Patient::findOrFail($id);
         $user = User::find($patient->created_by);
-        $pathologies = Pathology::all();
+        //$pathologies = Pathology::all();
+        $pathologies = Pathology::where('user_id','=','1')->orWhere('user_id','=',Auth::user()->id)->get();
         return view('patients.createconsult')->withPatient($patient)->withUser($user)->withPathologies($pathologies);
     }
     /**

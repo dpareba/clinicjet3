@@ -170,177 +170,181 @@ Add Consultation for Patient Visit
 							<div class="col-md-12 col-xs-12">
 								<div class="form-group {{ $errors->has('pathology')?'has-error':''}}">
 									<label class="control-label" for="pathology">Recommended Clinical Follow up</label>
-									<select name="pathology[]" id="pathology" class="js-example-basic-multiple  form-control" multiple="multiple">
-										@foreach ($pathologies as $pathology)
-										<option value="{{$pathology->id}}">{{$pathology->name}}</option>
-										@endforeach
-									</select>
-									<span class="help-block">{{$errors->first('pathology')}}</span>
-								</div>
-							</div>
-
-							
-						</div>
-						{{-- .row --}}
-						<hr>
-						<div class="row">
-							<div class="col-md-12">
-								<!-- small box -->
-								<div class="small-box bg-aqua">
-									<div class="inner">
-										<div class="row">
-											<div class="col-md-6 col-xs-12">
-												<div class="form-group {{ $errors->has('medname')?'has-error':''}}">
-													<label for="medname" id="medname" class="control-label">Brand Name</label>
-													<div class="pull-right box-tools">
-														<a type="button" id="addmed" class="btn btn-sm" style="color: gray;" data-toggle="modal" data-target="#myModal">
-															<i class="fa fa-plus"></i></a>
-															<a type="button" id="clear" class="btn btn btn-sm" style="color: gray;">
-																<i class="fa fa-times"></i></a>
-															</div>
-															<select name="medname" id="medname" class="medname form-control" >
-															</select>
-															<i id="messagebox" class="help-block" style="color: red;"></i>
-														</div>
-													</div>{{-- .col-md-6 --}}
-
-
-													<div class="col-md-3 col-xs-12">
-														<div class="form-group {{ $errors->has('doseduration')?'has-error':''}}">
-															<label class="control-label" for="doseduration">Dose Duration</label>
-															<select name="doseduration" id="doseduration" class="js-example-basic-single form-control">
-																<option value="days" selected="">Days</option>
-																<option value="weeks" selected="">Weeks</option>
-																<option value="months" >Months</option>
-																<option value="years" >Years</option>
-																<option value="sos" >SOS</option>
-																<option value="lifetime" >Lifetime</option>
-															</select>
-															<span class="help-block">{{$errors->first('doseduration')}}</span>
-														</div>
-													</div>
-
-													<div class="col-md-1 col-xs-12">
-														<div class="form-group dosedurationdays {{ $errors->has('dosedurationdays')?'has-error':''}}">
-															<label class="control-label" id="dosedurationdayslabel" for="dosedurationdays">Days</label>
-															<select name="dosedurationdays" id="dosedurationdays" class="js-example-basic-single form-control">
-																{{-- appending values between 1 and 31 using jquery --}}
-															</select>
-															<span class="help-block">{{$errors->first('dosedurationdays')}}</span>
-														</div>
-													</div>
-
-
-												</div>{{-- .row --}}
-
-												<div class="row">
-													<div class="col-md-2 col-xs-12">
-														<div class="form-group dosetime {{ $errors->has('dosetime')?'has-error':''}}">
-															<label class="control-label" for="dosetime">Dose Time</label>
-															<select name="dosetime" id="dosetime" class="js-example-basic-single form-control">
-																<option value="bf" selected="selected">Before Food</option>
-																<option value="af" >After Food</option>
-																<option value="wf" >With Food</option>
-																<option value="oth" >Other</option>
-															</select>
-															<span class="help-block">{{$errors->first('dosetime')}}</span>
-														</div>
-													</div>
-													<div class="col-md-4 col-xs-12">
-														<div class="form-group dosetimespecial {{ $errors->has('dosetimespecial')?'has-error':''}}">
-															<label class="control-label" for="dosetimespecial">Dose Time (Special Instructions)</label>
-															<input type="text" name="dosetimespecial" id="dosetimespecial" class="form-control">
-															<span class="help-block">{{$errors->first('dosetimespecial')}}</span>
-														</div>
-													</div>
-
-													<div class="col-md-3 col-xs-12">
-														<div class="form-group {{ $errors->has('doseregime1')?'has-error':''}}">
-															<label class="control-label" for="doseregime1">Dose Regime</label>
-															<select name="doseregime1" id="doseregime1" class="js-example-basic-single form-control">
-																<option value="M-A-N">M-A-N</option>
-																<option value="SOS" >SOS</option>
-																<option value="Other" >Other</option>
-															</select>
-															<span class="help-block">{{$errors->first('doseregime1')}}</span>
-														</div>
-													</div>
-
-													<div class="col-md-1 col-xs-12">
-														<div class="form-group dosemorning {{ $errors->has('dosemorning')?'has-error':''}}">
-															<label class="control-label" id="dosemorninglabel" for="dosemorning">Morning</label>
-															<select name="dosemorning" id="dosemorning" class="js-example-basic-single form-control">
-																{{-- appending values between 0 and 10 using jquery --}}
-															</select>
-															<span class="help-block">{{$errors->first('dosemorning')}}</span>
-														</div>
-													</div>
-
-													<div class="col-md-1 col-xs-12">
-														<div class="form-group doseafternoon {{ $errors->has('doseafternoon')?'has-error':''}}">
-															<label class="control-label" id="doseafternoonlabel" for="doseafternoon">Afternoon</label>
-															<select name="doseafternoon" id="doseafternoon" class="js-example-basic-single form-control">
-																{{-- appending values between 1 and 31 using jquery --}}
-															</select>
-															<span class="help-block">{{$errors->first('doseafternoon')}}</span>
-														</div>
-													</div>
-
-													<div class="col-md-1 col-xs-12">
-														<div class="form-group dosenight {{ $errors->has('dosenight')?'has-error':''}}">
-															<label class="control-label" id="dosenightlabel" for="dosenight">Night</label>
-															<select name="dosenight" id="dosenight" class="js-example-basic-single form-control">
-																{{-- appending values between 1 and 31 using jquery --}}
-															</select>
-															<span class="help-block">{{$errors->first('dosenight')}}</span>
-														</div>
-													</div>
-												</div>{{-- .row --}}
-
-												<div class="row">
-													<div class="col-md-6 col-md-offset-6 col-xs-12">
-														<div class="form-group doseregimespecial {{ $errors->has('doseregimespecial')?'has-error':''}}">
-															<label class="control-label" for="doseregimespeciallabel">Dose Regime (Special Instructions)</label>
-															<div class="input-group">
-																<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-																<textarea   name="doseregimespecial" id="doseregimespecial" class="form-control" cols="30" rows="2" style="resize: none;" placeholder="Special Instruction for Dose Regime"></textarea>
-															</div>
-															<span class="help-block">{{$errors->first('doseregimespecial')}}</span>
-														</div>
-													</div>
-
-												</div>
-												{{-- .row --}}
-
-												<div class="row">
-													<div class="col-md-12 col-xs-12">
-														<div class="form-group {{ $errors->has('remarks')?'has-error':''}}">
-															<label class="control-label" for="remarks">Remarks</label>
-															<div class="input-group">
-																<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-																<textarea  autofocus=""  name="remarks" id="remarks" class="form-control" cols="30" rows="2" style="resize: none;" placeholder="Doctor's Remarks"></textarea>
-															</div>
-															<span class="help-block">{{$errors->first('remarks')}}</span>
-														</div>
-													</div>
-
-												</div>
-												{{-- .row --}}
-											</div>{{-- .inner --}}
-											<a id="bbb" class="small-box-footer">Add Prescription<i class="fa fa-arrow-circle-right"></i></a>
+									<div class="pull-right box-tools">
+										<a type="button" id="addpath" class="btn btn btn-sm" style="color: gray;" data-toggle="modal" data-target="#myPathModal">
+											<i class="fa fa-plus"></i></a>
 										</div>
+										<select name="pathology[]" id="pathology" class="js-example-basic-multiple  form-control" multiple="multiple">
+											@foreach ($pathologies as $pathology)
+											<option value="{{$pathology->id}}">{{$pathology->name}}</option>
+											@endforeach
+										</select>
+										<span class="help-block">{{$errors->first('pathology')}}</span>
 									</div>
 								</div>
 
-								<hr>
-								
-								<div class="row">
-									<div class="col-md-12">
-										<div class="box box-gray">
-											<div class="box-header">
+
+							</div>
+							{{-- .row --}}
+							<hr>
+							<div class="row">
+								<div class="col-md-12">
+									<!-- small box -->
+									<div class="small-box bg-aqua">
+										<div class="inner">
+											<div class="row">
+												<div class="col-md-6 col-xs-12">
+													<div class="form-group {{ $errors->has('medname')?'has-error':''}}">
+														<label for="medname" id="medname" class="control-label">Brand Name</label>
+														<div class="pull-right box-tools">
+															<a type="button" id="addmed" class="btn btn-sm" style="color: gray;" data-toggle="modal" data-target="#myModal">
+																<i class="fa fa-plus"></i></a>
+																<a type="button" id="clear" class="btn btn btn-sm" style="color: gray;">
+																	<i class="fa fa-times"></i></a>
+																</div>
+																<select name="medname" id="medname" class="medname form-control" >
+																</select>
+																<i id="messagebox" class="help-block" style="color: red;"></i>
+															</div>
+														</div>{{-- .col-md-6 --}}
+
+
+														<div class="col-md-3 col-xs-12">
+															<div class="form-group {{ $errors->has('doseduration')?'has-error':''}}">
+																<label class="control-label" for="doseduration">Dose Duration</label>
+																<select name="doseduration" id="doseduration" class="js-example-basic-single form-control">
+																	<option value="days" selected="">Days</option>
+																	<option value="weeks" selected="">Weeks</option>
+																	<option value="months" >Months</option>
+																	<option value="years" >Years</option>
+																	<option value="sos" >SOS</option>
+																	<option value="lifetime" >Lifetime</option>
+																</select>
+																<span class="help-block">{{$errors->first('doseduration')}}</span>
+															</div>
+														</div>
+
+														<div class="col-md-1 col-xs-12">
+															<div class="form-group dosedurationdays {{ $errors->has('dosedurationdays')?'has-error':''}}">
+																<label class="control-label" id="dosedurationdayslabel" for="dosedurationdays">Days</label>
+																<select name="dosedurationdays" id="dosedurationdays" class="js-example-basic-single form-control">
+																	{{-- appending values between 1 and 31 using jquery --}}
+																</select>
+																<span class="help-block">{{$errors->first('dosedurationdays')}}</span>
+															</div>
+														</div>
+
+
+													</div>{{-- .row --}}
+
+													<div class="row">
+														<div class="col-md-2 col-xs-12">
+															<div class="form-group dosetime {{ $errors->has('dosetime')?'has-error':''}}">
+																<label class="control-label" for="dosetime">Dose Time</label>
+																<select name="dosetime" id="dosetime" class="js-example-basic-single form-control">
+																	<option value="bf" selected="selected">Before Food</option>
+																	<option value="af" >After Food</option>
+																	<option value="wf" >With Food</option>
+																	<option value="oth" >Other</option>
+																</select>
+																<span class="help-block">{{$errors->first('dosetime')}}</span>
+															</div>
+														</div>
+														<div class="col-md-4 col-xs-12">
+															<div class="form-group dosetimespecial {{ $errors->has('dosetimespecial')?'has-error':''}}">
+																<label class="control-label" for="dosetimespecial">Dose Time (Special Instructions)</label>
+																<input type="text" name="dosetimespecial" id="dosetimespecial" class="form-control">
+																<span class="help-block">{{$errors->first('dosetimespecial')}}</span>
+															</div>
+														</div>
+
+														<div class="col-md-3 col-xs-12">
+															<div class="form-group {{ $errors->has('doseregime1')?'has-error':''}}">
+																<label class="control-label" for="doseregime1">Dose Regime</label>
+																<select name="doseregime1" id="doseregime1" class="js-example-basic-single form-control">
+																	<option value="M-A-N">M-A-N</option>
+																	<option value="SOS" >SOS</option>
+																	<option value="Other" >Other</option>
+																</select>
+																<span class="help-block">{{$errors->first('doseregime1')}}</span>
+															</div>
+														</div>
+
+														<div class="col-md-1 col-xs-12">
+															<div class="form-group dosemorning {{ $errors->has('dosemorning')?'has-error':''}}">
+																<label class="control-label" id="dosemorninglabel" for="dosemorning">Morning</label>
+																<select name="dosemorning" id="dosemorning" class="js-example-basic-single form-control">
+																	{{-- appending values between 0 and 10 using jquery --}}
+																</select>
+																<span class="help-block">{{$errors->first('dosemorning')}}</span>
+															</div>
+														</div>
+
+														<div class="col-md-1 col-xs-12">
+															<div class="form-group doseafternoon {{ $errors->has('doseafternoon')?'has-error':''}}">
+																<label class="control-label" id="doseafternoonlabel" for="doseafternoon">Afternoon</label>
+																<select name="doseafternoon" id="doseafternoon" class="js-example-basic-single form-control">
+																	{{-- appending values between 1 and 31 using jquery --}}
+																</select>
+																<span class="help-block">{{$errors->first('doseafternoon')}}</span>
+															</div>
+														</div>
+
+														<div class="col-md-1 col-xs-12">
+															<div class="form-group dosenight {{ $errors->has('dosenight')?'has-error':''}}">
+																<label class="control-label" id="dosenightlabel" for="dosenight">Night</label>
+																<select name="dosenight" id="dosenight" class="js-example-basic-single form-control">
+																	{{-- appending values between 1 and 31 using jquery --}}
+																</select>
+																<span class="help-block">{{$errors->first('dosenight')}}</span>
+															</div>
+														</div>
+													</div>{{-- .row --}}
+
+													<div class="row">
+														<div class="col-md-6 col-md-offset-6 col-xs-12">
+															<div class="form-group doseregimespecial {{ $errors->has('doseregimespecial')?'has-error':''}}">
+																<label class="control-label" for="doseregimespeciallabel">Dose Regime (Special Instructions)</label>
+																<div class="input-group">
+																	<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+																	<textarea   name="doseregimespecial" id="doseregimespecial" class="form-control" cols="30" rows="2" style="resize: none;" placeholder="Special Instruction for Dose Regime"></textarea>
+																</div>
+																<span class="help-block">{{$errors->first('doseregimespecial')}}</span>
+															</div>
+														</div>
+
+													</div>
+													{{-- .row --}}
+
+													<div class="row">
+														<div class="col-md-12 col-xs-12">
+															<div class="form-group {{ $errors->has('remarks')?'has-error':''}}">
+																<label class="control-label" for="remarks">Remarks</label>
+																<div class="input-group">
+																	<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+																	<textarea  autofocus=""  name="remarks" id="remarks" class="form-control" cols="30" rows="2" style="resize: none;" placeholder="Doctor's Remarks"></textarea>
+																</div>
+																<span class="help-block">{{$errors->first('remarks')}}</span>
+															</div>
+														</div>
+
+													</div>
+													{{-- .row --}}
+												</div>{{-- .inner --}}
+												<a id="bbb" class="small-box-footer">Add Prescription<i class="fa fa-arrow-circle-right"></i></a>
 											</div>
-											<div class="box-body">
-												<ul class="todo-list" id="scriplist">
+										</div>
+									</div>
+
+									<hr>
+
+									<div class="row">
+										<div class="col-md-12">
+											<div class="box box-gray">
+												<div class="box-header">
+												</div>
+												<div class="box-body">
+													<ul class="todo-list" id="scriplist">
 													{{-- <li class="plist">
 														<input type="hidden" name="medid[]" value="Hello">
 														<small class="label label-danger"><i class="fa fa-heartbeat"></i> Brand Name</small>
@@ -615,7 +619,7 @@ Add Consultation for Patient Visit
 				</div> --}}
 
 				<div class="example-modal" >
-					<div class="modal modal-info" id="myModal">
+					<div class="modal modal-primary" id="myModal">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -669,26 +673,62 @@ Add Consultation for Patient Visit
 					</div>
 					<!-- /.example-modal -->
 
-					<div class="row">
-						<div class="col-md-4 col-md-offset-4">
-							<a href="{{route('patients.show',$patient->id)}}" class="btn btn-primary btn-block"><< Back</a>
+
+					<div class="example-modal">
+					<div class="modal modal-primary" id="myPathModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title">Add New Investigation</h4>
+										</div>
+										<div class="modal-body">
+											<form data-parsley-validate class="formpath" action="#" method=""  enctype="multipart/form-data" >
+											{{csrf_field()}}
+											<div id="pathname-error-label" class="form-group ">
+												<label class="control-label" for="pathname">Add Investigation</label>
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-plus-square"></i></span>
+													<input event.preventDefault(); autofocus="" type="text" name="pathname" id="pathname" class="form-control">
+												</div>
+												<span id="pathname-error" class="help-block"></span>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+											<button type="submit" id="addpathology" class="btn btn-outline">Save changes</button>
+										</div>
+										</form>
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+							<!-- /.modal -->
 						</div>
-					</div>
-					@stop
+						<!-- /.example-modal -->
 
-					@section('scripts')
-					<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-					{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script> --}}
-					<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-					<script>
-						var prescrip = [];
-						var prescriprowcount = 0;
+						<div class="row">
+							<div class="col-md-4 col-md-offset-4">
+								<a href="{{route('patients.show',$patient->id)}}" class="btn btn-primary btn-block"><< Back</a>
+							</div>
+						</div>
+						@stop
 
-						$(document).ready(function(){
+						@section('scripts')
+						<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+						{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script> --}}
+						<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+						<script>
+							var prescrip = [];
+							var prescriprowcount = 0;
 
-							$(".js-example-basic-multiple").select2({
-								placeholder: "Recommended Clinical follow up"
-							});
+							$(document).ready(function(){
+
+								$(".js-example-basic-multiple").select2({
+									placeholder: "Recommended Clinical follow up"
+								});
 			//Datemask dd/mm/yyyy
 			$("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
     		//Datemask2 mm/dd/yyyy
@@ -1194,7 +1234,7 @@ $("#addmedicine").click(function(e){
 			console.log(data.responseText);
 			var obj = jQuery.parseJSON( data.responseText );
 			if(obj.medname){
-				$("#medname-error-label").addClass("has-error");
+				$("#medname-error-label").addClass("has-warning");
 				$( '#medname-error' ).html( obj.medname );
 			}
 
@@ -1202,6 +1242,44 @@ $("#addmedicine").click(function(e){
 	});
 	return false;
 });
+
+$('#addpathology').click(function(e){
+	e.preventDefault();
+	$.ajax({
+		type: "POST",
+		url : "/pathologies",
+		data: $("form.formpath").serialize(),
+		success:function(response){
+			$("#myPathModal").modal('hide');
+		},
+		error: function(data){
+			console.log(data.responseText);
+			var obj = jQuery.parseJSON( data.responseText );
+			if(obj.pathname){
+				$("#pathname-error-label").addClass("has-warning");
+				$('#pathname-error').html( obj.pathname );
+			}
+			//alert('error');
+		}
+	});
+	//return false;
+});
+
+// $("#addpath").click(function(e){
+// 	e.preventDefault();
+// 	$.ajax({
+// 		type: "POST",
+// 		url:"/pathologies",
+// 		data: $("form.formpath").serialize(),
+// 		success: function(response){
+// 			// $("#myPathModal").modal('hide');
+// 		},
+// 		error: function(data){
+// 			console.log(data.responseText);
+// 		}
+// 	});
+// 	return false;
+// });
 
 $("#addmed").click(function(){
 	$(".medname").select2("val", " ");
