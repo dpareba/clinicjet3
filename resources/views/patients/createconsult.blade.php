@@ -175,9 +175,9 @@ Add Consultation for Patient Visit
 											<i class="fa fa-plus"></i></a>
 										</div>
 										<select name="pathology[]" id="pathology" class="js-example-basic-multiple  form-control" multiple="multiple">
-											@foreach ($pathologies as $pathology)
+											{{-- @foreach ($pathologies as $pathology)
 											<option value="{{$pathology->id}}">{{$pathology->name}}</option>
-											@endforeach
+											@endforeach --}}
 										</select>
 										<span class="help-block">{{$errors->first('pathology')}}</span>
 									</div>
@@ -187,6 +187,32 @@ Add Consultation for Patient Visit
 							</div>
 							{{-- .row --}}
 							<hr>
+
+{{-- =====================================TESTING================================================= --}}
+
+						{{-- <div class="row">
+							<div class="col-md-12 col-xs-12">
+								<div class="form-group {{ $errors->has('patho')?'has-error':''}}">
+									<label class="control-label" for="patho">Testing Recommended Clinical Follow up</label>
+									<div class="pull-right box-tools">
+										<a type="button" id="addpath" class="btn btn btn-sm" style="color: gray;" data-toggle="modal" data-target="#myPathModal">
+											<i class="fa fa-plus"></i></a>
+										</div>
+										<select name="patho[]" id="patho" class="form-control" multiple="multiple">
+											
+										</select>
+										<span class="help-block">{{$errors->first('patho')}}</span>
+									</div>
+								</div>
+
+
+							</div> --}}
+							{{-- .row --}}
+							{{-- <hr> --}}
+
+{{-- =====================================TESTING================================================= --}}
+
+
 							<div class="row">
 								<div class="col-md-12">
 									<!-- small box -->
@@ -726,9 +752,13 @@ Add Consultation for Patient Visit
 
 							$(document).ready(function(){
 
-								$(".js-example-basic-multiple").select2({
-									placeholder: "Recommended Clinical follow up"
+								// $(".js-example-basic-multiple").select2({
+								// 	placeholder: "Recommended Clinical follow up"
+								// });
+								$(".testselect").select2({
+									placeholder: "Testing Select2"
 								});
+
 			//Datemask dd/mm/yyyy
 			$("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
     		//Datemask2 mm/dd/yyyy
@@ -1064,6 +1094,28 @@ $("#followuptype").change(function(){
 		}
 	});
 });
+});
+
+$("#pathology").select2({
+	ajax: {
+		multiple:true,
+		url: '{{URL::route('pathologies.index')}}',
+		type: 'GET',
+		dataType: 'json',
+		delay:250,
+		data: function(params){
+			return {
+				q: params.term,
+			};
+		},
+		processResults: function(data, params){
+			return{
+				results:data,
+			};
+		},
+		cache:true,
+	},
+	minimumInputLength:3,
 });
 
 $(".medname").select2({
