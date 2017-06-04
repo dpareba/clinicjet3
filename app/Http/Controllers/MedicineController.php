@@ -32,7 +32,12 @@ class MedicineController extends Controller
         })->get();
 
         foreach ($medicines as $medicine) {
-            $med = $medicine->name . ' (' . $medicine->composition . ')';
+            if ($medicine->composition == '') {
+                $med = $medicine->name;
+            }else{
+                $med = $medicine->name . ' (' . $medicine->composition . ')';
+            }
+            
             $formatted_tags[] = ['id' => $medicine->id, 'text' => $med , 'composition' => $medicine->composition, 'mednameonly'=> $medicine->name];
         }
         //$formatted_tags[] = ['id' => 'Dilip', 'text' => 'Pareba'];
@@ -58,11 +63,15 @@ class MedicineController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'medname'=>'required'
+            'medname'=>'required|unique:medicines,name'
+            ],
+            [
+            'medname.required'=>'Medicine Name cannot be left blank.',
+            'medname.unique'=>'Medicine by this name already exists.'
             ]);
         $medicine = new Medicine;
         $medicine->name = $request->medname;
-        $medicine->composition = "dgsj";
+        $medicine->composition = $request->medicomp;
         $medicine->user_id = Auth::user()->id;
         $medicine->save();
     }

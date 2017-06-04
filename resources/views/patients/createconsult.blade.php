@@ -621,7 +621,7 @@ Add Consultation for Patient Visit
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span></button>
-										<h4 class="modal-title">Add Medicine Name</h4>
+										<h4 class="modal-title">Add Medicine</h4>
 									</div>
 									<div class="modal-body">
 										<form data-parsley-validate class="formmed" action="#"  enctype="multipart/form-data" method="POST">
@@ -631,15 +631,24 @@ Add Consultation for Patient Visit
 												<input event.preventDefault(); autofocus="" required="" type="text" name="medname" id="medname" class="form-control">
 											</div> --}}
 											
-								<div class="form-group {{ $errors->has('medname')?'has-error':''}}">
-									<label class="control-label" for="medname">Add Medicine</label>
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-										<input event.preventDefault(); autofocus="" type="text" name="medname" id="medname" class="form-control">
-									</div>
-									<span class="help-block">{{$errors->first('medname')}}</span>
-								</div>
-							
+											<div id="medname-error-label" class="form-group ">
+												<label class="control-label" for="medname">Add Medicine</label>
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-plus-square"></i></span>
+													<input event.preventDefault(); autofocus="" type="text" name="medname" id="medname" class="form-control">
+												</div>
+												<span id="medname-error" class="help-block"></span>
+											</div>
+
+											<div  class="form-group ">
+												<label class="control-label" for="medicomp">Medicine Composition</label>
+												<div class="input-group">
+													<span class="input-group-addon"><i class="fa fa-plus-square"></i></span>
+													<input event.preventDefault(); autofocus="" type="text" name="medicomp" id="medicomp" class="form-control">
+												</div>
+												<span  class="help-block"></span>
+											</div>
+
 											{{-- <div class="form-group">
 												<label for="medcompo">Medicine Composition</label>
 												<input event.preventDefault();  type="text" name="medcompo" id="medcompo" class="form-control">
@@ -1179,9 +1188,16 @@ $("#addmedicine").click(function(e){
 		success: function(response){
 			$('#medname').val('');
 			$("#myModal").modal('hide');
+
 		},
-		error: function(){
-			// alert('error')
+		error: function(data){
+			console.log(data.responseText);
+			var obj = jQuery.parseJSON( data.responseText );
+			if(obj.medname){
+				$("#medname-error-label").addClass("has-error");
+				$( '#medname-error' ).html( obj.medname );
+			}
+
 		}
 	});
 	return false;
