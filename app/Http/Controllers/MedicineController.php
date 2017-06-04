@@ -57,9 +57,12 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'medname'=>'required'
+            ]);
         $medicine = new Medicine;
         $medicine->name = $request->medname;
-        $medicine->composition = "hell";
+        $medicine->composition = "dgsj";
         $medicine->user_id = Auth::user()->id;
         $medicine->save();
     }

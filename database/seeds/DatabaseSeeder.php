@@ -2038,12 +2038,10 @@ class DatabaseSeeder extends Seeder
             ]);
 
         DB::table('users')->insert(['name'=>'SYSTEM USER','email'=>'system@system.com','password'=>bcrypt('hello79'),'phone'=>'1236547896','doctype'=>'system','speciality_id'=>1]);
-        DB::table('users')->insert(['name'=>'DILIP PAREBA','email'=>'dp@gmail.com','password'=>bcrypt('hello79'),'phone'=>'1236547893','doctype'=>'GP','speciality_id'=>1]);
-        DB::table('users')->insert(['name'=>'JOEY BLUE','email'=>'jb@gmail.com','password'=>bcrypt('hello79'),'phone'=>'1236547891','doctype'=>'GP','speciality_id'=>1]);
+        
 
         DB::table('medicines')->insert(['name'=>'DEC 100 MG TABLET 10','composition'=>'GUAIFENESIN + DIETHYLCARBAMAZINE + CHLORPHENIRAMIN | P1E6','user_id'=>1]);
-        DB::table('medicines')->insert(['name'=>'ACIVAS P 100/325/15 MG TABLET 10','composition'=>'ACECLOFENAC + PARACETAMOL + SERRATIOPEPTIDASE | M1A7','user_id'=>2]);
-        DB::table('medicines')->insert(['name'=>'COVERSYL AM 5/4 MG TABLET 10','composition'=>'AMLODIPINE + PERINDOPRIL | C8F3','user_id'=>3]);
+        
 
 
 

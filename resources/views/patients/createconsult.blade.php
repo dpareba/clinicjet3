@@ -624,12 +624,26 @@ Add Consultation for Patient Visit
 										<h4 class="modal-title">Add Medicine Name</h4>
 									</div>
 									<div class="modal-body">
-										<form class="formmed" action="#"  enctype="multipart/form-data" method="POST">
+										<form data-parsley-validate class="formmed" action="#"  enctype="multipart/form-data" method="POST">
 											{{csrf_field()}}
-											<div class="form-group">
+											{{-- <div class="form-group">
 												<label for="medname">Medicine Name</label>
-												<input event.preventDefault(); autofocus="" type="text" name="medname" id="medname" class="form-control">
-											</div>
+												<input event.preventDefault(); autofocus="" required="" type="text" name="medname" id="medname" class="form-control">
+											</div> --}}
+											
+								<div class="form-group {{ $errors->has('medname')?'has-error':''}}">
+									<label class="control-label" for="medname">Add Medicine</label>
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+										<input event.preventDefault(); autofocus="" type="text" name="medname" id="medname" class="form-control">
+									</div>
+									<span class="help-block">{{$errors->first('medname')}}</span>
+								</div>
+							
+											{{-- <div class="form-group">
+												<label for="medcompo">Medicine Composition</label>
+												<input event.preventDefault();  type="text" name="medcompo" id="medcompo" class="form-control">
+											</div> --}}
 											
 										</div>
 										<div class="modal-footer">
@@ -1163,10 +1177,11 @@ $("#addmedicine").click(function(e){
 		
 		data: $("form.formmed").serialize(),
 		success: function(response){
-			alert(response['response']);
+			$('#medname').val('');
+			$("#myModal").modal('hide');
 		},
 		error: function(){
-			alert('error')
+			// alert('error')
 		}
 	});
 	return false;
